@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Jasig
+Implementation-Title: Jasig CAS Web Application
+Implementation-Version: 4.0.0
+Implementation-Vendor-Id: org.jasig.cas
+Specification-Vendor: Jasig
+Build-Jdk: 1.7.0_67
+Built-By: sayseakleng
+Created-By: Maven Integration for Eclipse
+Specification-Title: Jasig CAS Web Application
+Specification-Version: 4.0.0
+

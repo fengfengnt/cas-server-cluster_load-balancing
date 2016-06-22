@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kdemo.cas.ticket.dao.TicketDao">
+	<resultMap type="TicketDto" id="TicketDto">
+		<result property="ticketId" column="ticket_id"/>
+		<result property="ticket" column="ticket"/>
+	</resultMap>
+	
+	
+	<insert id="addTicket">
+		INSERT INTO 
+			TICKETS (ticket_id, ticket)
+		VALUES (
+			#{ticketId}, #{ticket}
+		)
+	</insert>
+	
+	<select id="getTicketById" resultMap="TicketDto">
+		SELECT * FROM TICKETS WHERE ticket_id = #{id}
+	</select>
+	
+	
+	<select id="getTickets" resultMap="TicketDto">
+		SELECT * FROM TICKETS
+	</select>
+	
+	<delete id="deleteTicketById">
+		DELETE FROM TICKETS WHERE ticket_id = #{id}
+	</delete>
+</mapper>

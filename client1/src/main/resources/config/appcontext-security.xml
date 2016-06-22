@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+    
+    
+    <sec:http entry-point-ref="casProcessingFilterEntryPoint" use-expressions="true">
+  		
+  		<!-- view -->    	
+  		<sec:intercept-url pattern="/" access="hasRole('ROLE_USER')" />
+        
+        <sec:custom-filter ref="casAuthenticationFilter" after="CAS_FILTER"/>
+
+        <sec:logout logout-success-url="/"/>
+        <sec:custom-filter ref="requestSingleLogoutFilter" before="LOGOUT_FILTER"/>
+    	<sec:custom-filter ref="singleLogoutFilter" before="CAS_FILTER"/>
+    	<sec:csrf disabled="true"/>
+    </sec:http>
+    
+    <sec:user-service id="userDetailService">
+    	<sec:user name="user" authorities="ROLE_USER, ROLE_ADMIN"/>
+    </sec:user-service>
+    
+    
+        
+    <import resource="/appcontext-casClient.xml"/>
+    
+</beans>
